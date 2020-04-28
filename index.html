@@ -22,6 +22,7 @@
 </head>
 <body>
 <div id="Contents">  
+    hey1
     <div id="sect1"> </div>  
     <div id="imgSect"> </div>  
     <div id="sect2"> </div>  
@@ -32,7 +33,7 @@
 	//var strID = getUrlParameter("https://wipro365.sharepoint.com/sites/pgf-test/SitePages/Dynamic-Test.aspx");
 	var siteURL = "https://wipro365.sharepoint.com/sites/pgf-test";
         //getItems(strID, _spPageContextInfo.webAbsoluteUrl, function(data) {  
-        getItems(strID, _spPageContextInfo.webAbsoluteUrl, function(data) {  
+        getItems(strID, siteURL, function(data) {  
             $("#sect1").html(data.d.Title);  
             $("#imgSect").html("<img alt='' src='" + data.d.Image + "'>");  
             $("#sect2").html(data.d.MultipleLinesText);  
