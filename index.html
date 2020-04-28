@@ -22,21 +22,21 @@
 </head>
 <body>
 <div id="Contents">  
-    hey1
+    hey2
     <div id="sect1"> </div>  
     <div id="imgSect"> </div>  
     <div id="sect2"> </div>  
 </div>  
 <script>  
    $(document).ready(function() {  
-        var strID = getUrlParameter('pageID');
+        //var strID = getUrlParameter('pageID');
 	//var strID = getUrlParameter("https://wipro365.sharepoint.com/sites/pgf-test/SitePages/Dynamic-Test.aspx");
-	var siteURL = "https://wipro365.sharepoint.com/sites/pgf-test";
+	var sURL = "https://wipro365.sharepoint.com/sites/pgf-test";
         //getItems(strID, _spPageContextInfo.webAbsoluteUrl, function(data) {  
-        getItems(strID, siteURL, function(data) {  
+        getItems(1, sURL, function(data) {  
             $("#sect1").html(data.d.Title);  
-            $("#imgSect").html("<img alt='' src='" + data.d.Image + "'>");  
-            $("#sect2").html(data.d.MultipleLinesText);  
+            //$("#imgSect").html("<img alt='' src='" + data.d.Image + "'>");  
+            //$("#sect2").html(data.d.MultipleLinesText);  
         }, function(data) { 
            alert("Oops");
         });
