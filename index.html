@@ -1,5 +1,5 @@
 <input type="button" id="btnClick" value="Retrieve List Items"/>
-hey6
+hey7
 <div id="CustomerPanel">
 <table id='tableEmployee' style="width: 100%;" border="1 px">
 <tr>
@@ -14,7 +14,8 @@ hey6
         $(function(){
         $("#btnClick").click(function(){
         //var requestUri = _spPageContextInfo.webAbsoluteUrl + "/_api/web/lists/getbytitle('Employees')/items";
-        var requestUri = "https://wipro365.sharepoint.com/sites/pgf-test/_api/web/lists/getbytitle('Test%20Content')/items";
+        var requestUri = "https://wipro365.sharepoint.com/sites/pgf-test/_api/web/lists/getbytitle('Test%20Content')/items(1)";
+
         alert(requestUri);
         $.ajax({
         url: requestUri,
@@ -25,7 +26,7 @@ hey6
         success: onSuccess,
         error: onError
         });
-        
+               
         function onSuccess(data) {
         var objItems = data.d.results;
         //var tableContent = '<table id="tableEmployee" style="width:100%" border="1 px"><thead><tr><td>Title</td>' + '<td>FirstName</td>' + '<td>LastName</td>' + '<td>Department Name</td>' + '</tr></thead><tbody>';
