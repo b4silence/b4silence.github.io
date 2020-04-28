@@ -34,11 +34,12 @@
 	var sURL = "https://wipro365.sharepoint.com/sites/pgf-test";
         //getItems(strID, _spPageContextInfo.webAbsoluteUrl, function(data) {  
         getItems(1, sURL, function(data) {  
-            $("#sect1").html(data.d.Title);  
+            //$("#sect1").html(data.d.Title);  
             //$("#imgSect").html("<img alt='' src='" + data.d.Image + "'>");  
-            //$("#sect2").html(data.d.MultipleLinesText);  
+            $("#sect2").html(data.d.MultipleLinesText);  
         }, function(data) { 
            alert("Oops");
+           alert(data);
         });
     });
   
