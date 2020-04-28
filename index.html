@@ -27,19 +27,19 @@
     <div id="sect2"> </div>  
 </div>  
 <script>  
-    $(document).ready(function() {  
+   $(document).ready(function() {  
         //var strID = getUrlParameter('pageID');
 	var strID = getUrlParameter("https://wipro365.sharepoint.com/sites/pgf-test/SitePages/Dynamic-Test.aspx");
-        getItems(strID, _spPageContextInfo.webAbsoluteUrl, function(data) {  
+        /*getItems(strID, _spPageContextInfo.webAbsoluteUrl, function(data) {  
             $("#sect1").html(data.d.Title);  
             $("#imgSect").html("<img alt='' src='" + data.d.Image + "'>");  
             $("#sect2").html(data.d.MultipleLinesText);  
-        }, function(data) {  
+        }, function(data) {  */
             alert("Ooops, an error occured. Please try again");  
-        });  
+        //});  
     });  
   
-    function getItems(itemID, siteurl, success, failure) {  
+    /*function getItems(itemID, siteurl, success, failure) {  
         $.ajax({  
             url: siteurl + "/_api/web/lists/getbytitle('Test%20Content')/items(" + itemID + ")",  
             method: "GET",  
@@ -60,7 +60,7 @@
         var regex = new RegExp('[\\?&]' + name + '=([^&#]*)');  
         var results = regex.exec(location.search);  
         return results === null ? '' : decodeURIComponent(results[1].replace(/\+/g, ' '));  
-    };  
+    };  */
 </script>
 </body>
 </html>
