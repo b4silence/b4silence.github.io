@@ -1,70 +1,49 @@
-<html>
-<head>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>  
-<style>  
-    div#sect1 {  
-        font-size: 25px;  
-        text-align: center;  
-        border-bottom: 2px solid #dcdcdc;  
-        padding-bottom: 10px;  
-    }  
- 
-    #imgSect img {  
-        border: 1px solid grey;  
-    }  
-  
-    div#imgSect {  
-        text-align: center;  
-        padding-top: 30px;  
-        padding-bottom: 10px;  
-    }  
-</style>
-</head>
-<body>
-<div id="Contents">  
-    hey2
-    <div id="sect1"> </div>  
-    <div id="imgSect"> </div>  
-    <div id="sect2"> </div>  
-</div>  
-<script>  
-   $(document).ready(function() {  
-        //var strID = getUrlParameter('pageID');
-	//var strID = getUrlParameter("https://wipro365.sharepoint.com/sites/pgf-test/SitePages/Dynamic-Test.aspx");
-	var sURL = "https://wipro365.sharepoint.com/sites/pgf-test";
-        //getItems(strID, _spPageContextInfo.webAbsoluteUrl, function(data) {  
-        getItems(1, sURL, function(data) {  
-            //$("#sect1").html(data.d.Title);  
-            //$("#imgSect").html("<img alt='' src='" + data.d.Image + "'>");  
-            $("#sect2").html(data.d.MultipleLinesText);  
-        }, function(data) { 
-           alert("Oops");
-           alert(data);
+
+ <script>
+        $(function(){
+        $("#btnClick").click(function(){
+        //var requestUri = _spPageContextInfo.webAbsoluteUrl + "/_api/web/lists/getbytitle('Employees')/items";
+        var requestUri = "https://wipro365.sharepoint.com/sites/pgf-test/_api/web/lists/getbytitle('Test%20Content')/items";
+        $.ajax({
+        url: requestUri,
+        type: "GET",
+        headers: {
+        "accept":"application/json; odata=verbose"
+        },
+        success: onSuccess,
+        error: onError
         });
-    });
-  
-    function getItems(itemID, siteurl, success, failure) {  
-        $.ajax({  
-            url: siteurl + "/_api/web/lists/getbytitle('Test%20Content')/items(" + itemID + ")",  
-            method: "GET",  
-            headers: {  
-                "Accept": "application/json; odata=verbose"  
-            },  
-            success: function(data) {  
-                success(data);  
-            },  
-            error: function(data) {  
-                failure(data);  
-            }  
-        });  
-    }
-  
-    function getUrlParameter(name) {  
-        name = name.replace(/[\[]/, '\\[').replace(/[\]]/, '\\]');  
-        var regex = new RegExp('[\\?&]' + name + '=([^&#]*)');  
-        var results = regex.exec(location.search);  
-        return results === null ? '' : decodeURIComponent(results[1].replace(/\+/g, ' '));  
-    };  
-</script>
-</body>
-</html>
+        
+        function onSuccess(data) {
+        var objItems = data.d.results;
+        //var tableContent = '<table id="tableEmployee" style="width:100%" border="1 px"><thead><tr><td>Title</td>' + '<td>FirstName</td>' + '<td>LastName</td>' + '<td>Department Name</td>' + '</tr></thead><tbody>';
+            var tableContent = '<table id="tableEmployee" style="width:100%" border="1 px"><thead><tr><td>Title</td>' + '<td>FirstName</td>' + '<td>LastName</td>' + '</tr></thead><tbody>';
+        
+        for (var i = 0; i < objItems.length; i++) {
+        tableContent += '<tr>';
+        tableContent += '<td>' + objItems[i].Title+ '</td>';
+        tableContent += '<td>' + objItems[i].SingleText + '</td>';
+        tableContent += '<td>' + objItems[i].MultipleLinesText + '</td>';
+        //tableContent += '<td>' + objItems[i].deptname + '</td>';
+        tableContent += '</tr>';
+        }
+        $('#employeeGrid').append(tableContent);
+        }
+        
+        function onError(error) {
+        alert('Error');
+        }
+        });
+        });
+        </script>
+        
+        <input type="button" id="btnClick" value="Retrieve List Items"/>
+        <div id="CustomerPanel">
+        <table id='tableEmployee' style="width: 100%;" border="1 px">
+        <tr>
+        <td>
+        <div id="employeeGrid" style="width: 100%"></div>
+        </td>
+        </tr>
+        </table>
+        </div>
